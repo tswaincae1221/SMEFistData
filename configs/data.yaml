@@ -1,0 +1,45 @@
+project:
+  station_list: data/metadata/station_list.csv
+  sample_submission: data/metadata/sample_submission.csv
+  raw_asos_dir: data/raw/asos
+  parsed_asos_dir: data/interim/asos
+  raw_gk2a_dir: data/raw/gk2a
+  satellite_feature_dir: data/interim/satellite_features
+  processed_dataset: data/processed/train.csv
+
+asos:
+  observation_hour_kst: 14
+  timeout_seconds: 30
+  max_retries: 3
+  retry_backoff_seconds: 1.0
+  request_interval_seconds: 0.2
+
+satellite:
+  channels:
+    - VI004
+    - VI005
+    - VI006
+    - VI008
+    - NR013
+    - NR016
+    - SW038
+    - WV063
+    - WV069
+    - WV073
+    - IR087
+    - IR096
+    - IR105
+    - IR112
+    - IR123
+    - IR133
+  area: KO
+  # 기상청 위성 API 페이지에는 요청 시각의 시간대가 명시되어 있지 않습니다.
+  # 대회 baseline_notebook의 로직을 확인한 뒤 kst 또는 utc로 확정하세요.
+  api_time_basis: review_required
+  timeout_seconds: 90
+  max_retries: 3
+  retry_backoff_seconds: 2.0
+  request_interval_seconds: 0.2
+  minimum_file_bytes: 10000
+  patch_radii_pixels: [0, 2, 5]
+
